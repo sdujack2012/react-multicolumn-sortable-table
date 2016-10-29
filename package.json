@@ -1,0 +1,48 @@
+{
+  "name": "react-multicolumn-sortable-table",
+  "version": "0.1.0",
+  "scripts": {
+    "lint": "tslint src/**/*.ts",
+    "test": "tsc && karma start",
+    "postinstall": "typings install",
+    "prepublish": "tsc",
+    "tsc": "tsc",
+    "typings": "typings"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sdujack2012/react-multicolumn-sortable-table.git"
+  },
+  "author": {
+    "name": "dooldcode",
+    "email": "sdujack2012@gmail.com"
+  },
+  "keywords": [
+    "react",
+    "table",
+    "sortable",
+    "sort",
+    "multiple columns"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sdujack2012/react-multicolumn-sortable-table.git/issues"
+  },
+  "main": "./dist/index.js",
+  "typings": "./dist/index.d.ts",
+  "dependencies": {},
+  "devDependencies": {
+    "codelyzer": "^0.0.20",
+    "lodash": "^4.16.4",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "require": "^2.4.20",
+    "thenby": "^1.2.1",
+    "tslint": "^3.15.1",
+    "typescript": "2.0.2",
+    "typings": "^1.0.4"
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  }
+}
