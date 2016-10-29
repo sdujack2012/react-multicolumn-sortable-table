@@ -7,21 +7,19 @@
 let React = require('react');
 let ReactDom = require('react-dom');
 let _ = require('lodash');
-let fontAwesome = require('font-awesome/css/font-awesome.min.css');
-let CSSModules = require('react-css-modules').CSSModules;
+
+let CSSModules = require('react-css-modules');
 let SortByColumnsFunctionGenerator = require('./SortByColumnsFunctionGenerator').SortByColumnsFunctionGenerator;
 
-
-
-export let MultiColumnSortableTable = CSSModules(React.createClass({
+export let MultiColumnSortableTableRaw = React.createClass({
     
     
     _sortingUtility: new SortByColumnsFunctionGenerator(),
 
-    handleSortingEvent: _.debounce(function (columnName: string) {
+    handleSortingEvent: function (columnName: string) {
         this._sortingUtility.AddSortingColumn(columnName);
-        this.setState(this.state);
-    }, 300),
+        this.forceUpdate();
+    },
     
 
     render:function() {
@@ -37,7 +35,7 @@ export let MultiColumnSortableTable = CSSModules(React.createClass({
                                 <tr >
                                  {
                                              _.map(Fields,(Field:any)=>
-                                                  <th onClick={() => this.handleSortingEvent(Field.Name) }>{Field.DisplayName===undefined?Field.Name:Field.DisplayName}{this._sortingUtility.getSortingIcon(Field.Name) }</th>  )
+                                                  <th key={Field.Name} onClick={() => this.handleSortingEvent(Field.Name) }>{Field.DisplayName===undefined?Field.Name:Field.DisplayName}<span className={Styles[this._sortingUtility.getSortingIcon(Field.Name)]} /></th>  )
                                  }
                                  </tr>
                             </thead>
@@ -47,7 +45,7 @@ export let MultiColumnSortableTable = CSSModules(React.createClass({
                                             <tr key={Row.Id}>
                                                 {
                                                     _.map(Fields,(Field:any)=>
-                                                        <td>{Row[Field]}</td>  
+                                                        <td>{Row[Field.Name]}</td>  
                                                     )
                                                 }
                                             </tr>
@@ -57,5 +55,19 @@ export let MultiColumnSortableTable = CSSModules(React.createClass({
                         </table>     
         );
     }
-}),fontAwesome);
+});
+
+export let MultiColumnSortableTable = (props)=>{
+    let {Styles} = props;
+    let MultiColumnSortableTableWrapped = CSSModules(MultiColumnSortableTableRaw,Styles||{sortable:''},{errorWhenNotFound:false});
+
+    return (
+
+        <MultiColumnSortableTableWrapped {...props}/>
+    );
+
+
+}
+    
+ 
 

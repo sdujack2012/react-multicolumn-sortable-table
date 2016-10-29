@@ -40,11 +40,11 @@ export class SortByColumnsFunctionGenerator {
         var Column = this.SortingColumns[columnName];
         if (this.SortingColumns[columnName]) {
             if (this.SortingColumns[columnName].Asc)
-                return "<i styleName='sort-asc'></i>";
-            else return "<i styleName='sort-asc'></i>";
+                return "sort-asc";
+            else return "sort-desc";
         }
         else {
-            return "<i styleName='sort'></i>";
+            return "sort";
         }
     }
     getSortingColumns() {
